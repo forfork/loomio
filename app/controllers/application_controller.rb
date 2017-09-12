@@ -5,10 +5,10 @@ class ApplicationController < ActionController::Base
   include ErrorRescueHelper
   include CurrentUserHelper
 
-  around_filter :process_time_zone
-  around_filter :process_locale         # LocalesHelper
-  before_filter :set_invitation_token   # CurrentUserHelper
-  before_filter :set_last_seen_at       # CurrentUserHelper
+  around_action :process_time_zone
+  around_action :process_locale         # LocalesHelper
+  before_action :set_invitation_token   # CurrentUserHelper
+  before_action :set_last_seen_at       # CurrentUserHelper
 
   helper_method :current_user
   helper_method :client_asset_path

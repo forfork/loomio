@@ -1,6 +1,6 @@
 class Dev::BaseController < ApplicationController
-  before_filter :ensure_not_production
-  before_filter :cleanup_database
+  before_action :ensure_not_production
+  before_action :cleanup_database
 
   def index
     @routes = self.class.action_methods.select do |action|
