@@ -4,7 +4,7 @@ describe MembershipRequest do
   let(:group) { create(:formal_group) }
   let(:membership_request) { group.membership_requests.new(name: 'Bob Dogood', email: 'this@that.org.nz', introduction: 'we talked yesterday, can you approve this please?') }
   let(:long_introduction) { "h#{'i' * 400}!"}
-  let(:responder) { stub_model User }
+  let(:responder) { create(:user) }
   let(:requestor) { create(:user) }
 
   describe 'introduction length' do

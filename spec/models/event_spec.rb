@@ -469,7 +469,7 @@ describe Event do
       outcome.make_announcement = true
       expect { Events::OutcomeCreated.publish!(outcome) }.to change { emails_sent }
       mail = ActionMailer::Base.deliveries.last
-      expect(mail.attachments).to have(1).attachment
+      expect(mail.attachments.length).to eq 1
       expect(mail.attachments.first).to be_a Mail::Part
       expect(mail.attachments.first.content_type).to match /text\/calendar/
       expect(mail.attachments.first.filename).to eq 'meeting.ics'
