@@ -3,6 +3,7 @@ class Membership < ActiveRecord::Base
   include HasTimeframe
   include HasExperiences
   include UsesOrganisationScope
+  include CustomCounterCache::Model
 
   validates_presence_of :group, :user, :volume
   validates_uniqueness_of :user_id, scope: :group_id

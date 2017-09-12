@@ -2,6 +2,8 @@ module HasImportance
   extend ActiveSupport::Concern
 
   included do
+    include CustomCounterCache::Model
+
     enum importances: %w(
       normal_importance
       has_decision

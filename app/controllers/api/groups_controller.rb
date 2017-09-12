@@ -3,7 +3,6 @@ class API::GroupsController < API::RestfulController
   load_and_authorize_resource only: :show, find_by: :key
   load_resource only: [:upload_photo], find_by: :key
   after_action :track_visit, only: :show
-  skip_before_action :authenticate_user!, only: [:index]
 
   def index
     instantiate_collection { |collection| collection.search_for(params[:q]).order(recent_activity_count: :desc) }

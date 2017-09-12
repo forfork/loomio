@@ -1,5 +1,6 @@
 class Invitation < ActiveRecord::Base
   include Null::User
+  include CustomCounterCache::Model
 
   class InvitationCancelled < StandardError; end
   class TooManyPending < StandardError; end

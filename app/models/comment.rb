@@ -2,6 +2,7 @@ class Comment < ActiveRecord::Base
   include Translatable
   include Reactable
   include HasMentions
+  include CustomCounterCache::Model
 
   has_paper_trail only: [:body]
   is_translatable on: :body

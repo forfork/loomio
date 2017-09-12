@@ -8,6 +8,7 @@ class Poll < ActiveRecord::Base
   include SelfReferencing
   include UsesOrganisationScope
   include Reactable
+  include CustomCounterCache::Model
 
   set_custom_fields :meeting_duration, :time_zone, :dots_per_person, :pending_emails, :minimum_stance_choices
 

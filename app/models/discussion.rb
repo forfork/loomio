@@ -26,6 +26,7 @@ class Discussion < ActiveRecord::Base
   include MakesAnnouncements
   include SelfReferencing
   include UsesOrganisationScope
+  include CustomCounterCache::Model
 
   scope :archived, -> { where('archived_at is not null') }
   scope :published, -> { where(archived_at: nil, is_deleted: false) }
@@ -57,8 +58,6 @@ class Discussion < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :commenters, -> { uniq }, through: :comments, source: :user
   has_many :attachments, as: :attachable, dependent: :destroy
-
-  has_many :events, -> { includes :user }, as: :eventable, dependent: :destroy
 
   has_many :items, -> { includes(:user).where(kind: THREAD_ITEM_KINDS).order('created_at ASC') }, class_name: 'Event'
   has_many :salient_items, -> { includes(:user).where(kind: SALIENT_ITEM_KINDS).order('created_at ASC') }, class_name: 'Event'

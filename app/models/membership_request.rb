@@ -1,10 +1,10 @@
 class MembershipRequest < ActiveRecord::Base
-  validates :name,  presence: true, :if => 'requestor.blank?'
-  validates :email, presence: true, email: true, :if => 'requestor.blank?' #this uses the gem 'valid_email'
+  validates :name,  presence: true, if: :requestor
+  validates :email, presence: true, email: true, if: :requestor
 
   validate :validate_not_in_group_already
   validate :validate_unique_membership_request
-  validates_presence_of :responder, :if => 'response.present?'
+  validates_presence_of :responder, if: :response
 
   validates :group, presence: true
 
